@@ -25,3 +25,12 @@ test_endpoint "http://localhost:8000/countries" 200 "countries endpoint"
 
 # Test the monthly average endpoint for London in January
 test_endpoint "http://localhost:8000/countries/England/London/January" 200 "monthly average endpoint for London in January"
+
+# Test the monthly average endpoint for Seville in June
+test_endpoint "http://localhost:8000/countries/Spain/Seville/June" 200 "monthly average endpoint for Seville in June"
+
+# Negative test: non-existent city
+test_endpoint "http://localhost:8000/countries/England/FakeCity/January" 404 "monthly average endpoint for non-existent city"
+
+# Edge case: missing month
+test_endpoint "http://localhost:8000/countries/England/London/" 404 "monthly average endpoint missing month"
